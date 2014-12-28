@@ -8,6 +8,7 @@ from django.template import Template, Context
 from django.template.loader_tags import BlockNode
 from django.utils._os import safe_join
 
+
 def get_page_or_404(name):
     """Return page content as a Django template or raise 404 error."""
     try:
@@ -17,7 +18,7 @@ def get_page_or_404(name):
     else:
         if not os.path.exists(file_path):
             raise Http404('Page Not Found')
-   
+
     with open(file_path, 'r') as f:
         page = Template(f.read())
     meta = None
@@ -38,7 +39,7 @@ def page(request, slug='index'):
         'page': page,
     }
     if page._meta is not None:
-    	meta = page._meta.render(Context())
-    	extra_context = json.loads(meta)
-    	context.update(extra_context)
+        meta = page._meta.render(Context())
+        extra_context = json.loads(meta)
+        context.update(extra_context)
     return render(request, 'page.html', context)

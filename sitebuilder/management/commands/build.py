@@ -12,10 +12,11 @@ def get_pages():
     for name in os.listdir(settings.SITE_PAGES_DIRECTORY):
         if name.endswith('.html'):
             yield name[:-5]
-           
+
+
 class Command(BaseCommand):
     help = 'Build static site output.'
-    
+
     def handle(self, *args, **options):
         """Request pages and build output."""
         settings.DEBUG = False
