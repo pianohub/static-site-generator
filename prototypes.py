@@ -17,6 +17,7 @@ settings.configure(
         'django.contrib.webdesign',
         'sitebuilder',
         'compressor',
+        'static_precompiler',
     ),
     STATIC_URL='/static/',
     SITE_PAGES_DIRECTORY=os.path.join(BASE_DIR, 'pages'),
@@ -26,7 +27,14 @@ settings.configure(
         'django.contrib.staticfiles.finders.FileSystemFinder',
         'django.contrib.staticfiles.finders.AppDirectoriesFinder',
         'compressor.finders.CompressorFinder',
+        'static_precompiler.finders.StaticPrecompilerFinder',
     ),
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 )
 
 
